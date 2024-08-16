@@ -1,5 +1,3 @@
-// https://www.youtube.com/watch?v=sxn2GPQjJgc     17:36
-
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Header from "./_components/Header";
