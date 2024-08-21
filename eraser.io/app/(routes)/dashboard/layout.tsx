@@ -6,6 +6,7 @@ import { useConvex } from "convex/react";
 import { useRouter } from "next/navigation";
 // Starting from version 13 and above, `useRouter` should be imported from the `next/navigation` module instead of `next/router`.
 import React, { useEffect } from "react";
+import SideNav from "./_components/SideNav";
 
 function DashboardLayout({
 	children,
@@ -30,7 +31,16 @@ function DashboardLayout({
 		}
 	};
 
-	return <div>{children}</div>;
+	return (
+		<div>
+			<div className="grid grid-cols-4">
+				<div>
+					<SideNav />
+				</div>
+				<div className="grid-cols-3">{children}</div>
+			</div>
+		</div>
+	);
 }
 
 export default DashboardLayout;
