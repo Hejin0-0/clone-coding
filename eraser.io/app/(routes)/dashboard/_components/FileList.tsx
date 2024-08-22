@@ -30,6 +30,7 @@ function FileList() {
 	const [fileList, setFileList] = useState<any>();
 	const { user }: any = useKindeBrowserClient();
 	const router = useRouter();
+
 	useEffect(() => {
 		fileList_ && setFileList(fileList_);
 		console.log(fileList_);
