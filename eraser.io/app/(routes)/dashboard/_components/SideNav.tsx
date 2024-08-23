@@ -10,9 +10,9 @@ import { toast } from "sonner";
 import { FileListContext } from "@/app/_context/FilesListContext";
 
 function SideNav() {
-	const { user } = useKindeBrowserClient();
+	const { user }: any = useKindeBrowserClient();
 	const createFile = useMutation(api.files.createFile);
-	const [activeTeam, setActiveTeam] = useState<TEAM>();
+	const [activeTeam, setActiveTeam] = useState<TEAM | any>();
 	const convex = useConvex();
 	const [totalFiles, setTotalFiles] = useState<Number>();
 	const { fileList_, setFileList_ } = useContext(FileListContext);
@@ -29,12 +29,11 @@ function SideNav() {
 			createdBy: user?.email,
 			archive: false,
 			document: "",
-			whiteboard: ",",
+			whiteboard: "",
 		}).then(
 			(resp) => {
 				if (resp) {
 					getFiles();
-
 					toast("File created successfully!");
 				}
 			},
@@ -54,7 +53,10 @@ function SideNav() {
 	};
 
 	return (
-		<div className="h-screen fixed w-72 border-r border-[1px] p-6 flex flex-col">
+		<div
+			className=" h-screen fixed w-72 borde-r border-[1px] p-6 flex flex-col
+    "
+		>
 			<div className="flex-1">
 				<SideNavTopSection
 					user={user}
@@ -63,6 +65,7 @@ function SideNav() {
 					}
 				/>
 			</div>
+
 			<div>
 				<SideNavBottomSection
 					totalFiles={totalFiles}

@@ -16,6 +16,7 @@ function Canvas({
 	const [whiteBoardData, setWhiteBoardData] = useState<any>();
 
 	const updateWhiteboard = useMutation(api.files.updateWhiteboard);
+
 	useEffect(() => {
 		onSaveTrigger && saveWhiteboard();
 	}, [onSaveTrigger]);
@@ -33,9 +34,16 @@ function Canvas({
 				<Excalidraw
 					theme="light"
 					initialData={{
-						elements:
-							fileData?.whiteboard &&
-							JSON.parse(fileData?.whiteboard),
+						elements: (() => {
+							try {
+								return fileData?.whiteboard
+									? JSON.parse(fileData?.whiteboard)
+									: [];
+							} catch (e) {
+								console.error("Invalid JSON:", e);
+								return []; // JSON 파싱 실패 시 빈 배열을 반환
+							}
+						})(),
 					}}
 					onChange={(excalidrawElements, appState, files) =>
 						setWhiteBoardData(excalidrawElements)

@@ -9,15 +9,13 @@ import { useConvex, useMutation, useQuery } from "convex/react";
 import React, { useEffect } from "react";
 import Header from "./_components/Header";
 import FileList from "./_components/FileList";
-
-const Dashboard = () => {
+import AdBanner from "./../../_components/AdBanner";
+function Dashboard() {
 	const convex = useConvex();
 	const { user }: any = useKindeBrowserClient();
-
-	// const getUser = useQuery(api.user.getUser, { email: user?.email });
+	//const getUser=useQuery(api.user.getUser,{email:user?.email});
 
 	const createUser = useMutation(api.user.createUser);
-
 	useEffect(() => {
 		if (user) {
 			checkUser();
@@ -42,9 +40,15 @@ const Dashboard = () => {
 	return (
 		<div className="p-8">
 			<Header />
+
 			<FileList />
+			<AdBanner
+				data-ad-slot="4796371341"
+				data-ad-format="auto"
+				data-full-width-responsive="true"
+			/>
 		</div>
 	);
-};
+}
 
 export default Dashboard;

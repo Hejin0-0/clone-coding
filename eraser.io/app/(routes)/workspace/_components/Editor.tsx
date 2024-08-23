@@ -10,12 +10,11 @@ import Checklist from "@editorjs/checklist";
 // @ts-ignore
 import Paragraph from "@editorjs/paragraph";
 // @ts-ignore
-import Warning from "@editorjs//warning";
-// @ts-ignore
+import Warning from "@editorjs/warning";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { toast } from "sonner";
-import { FILE } from "@/app/(routes)/dashboard/_components/FileList";
+import { FILE } from "../../dashboard/_components/FileList";
 
 const rawDocument = {
 	time: 1550476186479,
@@ -57,7 +56,7 @@ function Editor({
 	}, [fileData]);
 
 	useEffect(() => {
-		console.log("trigger Value: ", onSaveTrigger);
+		console.log("trigger Value:", onSaveTrigger);
 		onSaveTrigger && onSaveDocument();
 	}, [onSaveTrigger]);
 
@@ -86,10 +85,8 @@ function Editor({
 					class: Checklist,
 					inlineToolbar: true,
 				},
-				paragraph: {
-					class: Paragraph,
-					inlineToolbar: true,
-				},
+				paragraph: Paragraph,
+				warning: Warning,
 			},
 
 			holder: "editorjs",
@@ -97,7 +94,6 @@ function Editor({
 				? JSON.parse(fileData.document)
 				: rawDocument,
 		});
-
 		ref.current = editor;
 	};
 
@@ -124,6 +120,7 @@ function Editor({
 				});
 		}
 	};
+
 	return (
 		<div>
 			<div id="editorjs" className="ml-20"></div>

@@ -12,16 +12,12 @@ function WorkspaceHeader({ onSave }: any) {
 			</div>
 			<div className="flex items-center gap-4">
 				<Button
-					className="h-8 text-[12px]
-        gap-2 bg-yellow-500 hover:bg-yellow-600"
+					className="h-8 text-[12px] gap-2 bg-yellow-500 hover:bg-yellow-600"
 					onClick={() => onSave()}
 				>
 					<Save className="h-4 w-4" /> Save{" "}
 				</Button>
-				<Button
-					className="h-8 text-[12px]
-        gap-2 bg-blue-600 hover:bg-blue-700"
-				>
+				<Button className="h-8 text-[12px] gap-2 bg-blue-600 hover:bg-blue-700">
 					Share <Link className="h-4 w-4" />{" "}
 				</Button>
 			</div>

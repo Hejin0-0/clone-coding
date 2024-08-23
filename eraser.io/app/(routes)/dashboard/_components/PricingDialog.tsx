@@ -29,7 +29,7 @@ function PricingDialog() {
 									<p className="mt-2 sm:mt-4">
 										<strong className="text-3xl font-bold text-gray-900 sm:text-4xl">
 											{" "}
-											4.99${" "}
+											$1.99{" "}
 										</strong>
 
 										<span className="text-sm font-medium text-gray-700">
@@ -101,7 +101,8 @@ function PricingDialog() {
 
 										<span className="text-gray-700">
 											{" "}
-											Exclusive access to ABC.com content{" "}
+											Exclusive access to google.com
+											content{" "}
 										</span>
 									</li>
 
