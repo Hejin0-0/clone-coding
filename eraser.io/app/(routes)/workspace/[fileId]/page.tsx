@@ -45,7 +45,11 @@ function Workspace({ params }: any) {
 
 				{/* Whiteboard / Canvas */}
 				<div className="h-screen">Canvas</div>
-				<Canvas />
+				<Canvas
+					onSaveTrigger={triggerSave}
+					fileId={params.fileId}
+					fileData={fileData}
+				/>
 			</div>
 		</div>
 	);

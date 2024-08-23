@@ -10,7 +10,6 @@ export const createFile = mutation({
 		document: v.string(),
 		whiteboard: v.string(),
 	},
-
 	handler: async (ctx, args) => {
 		const result = await ctx.db.insert("files", args);
 		return result;
@@ -40,6 +39,19 @@ export const updateDocument = mutation({
 	handler: async (ctx, args) => {
 		const result = await ctx.db.patch(args._id, {
 			document: args.document,
+		});
+		return result;
+	},
+});
+
+export const updateWhiteboard = mutation({
+	args: {
+		_id: v.id("files"),
+		whiteboard: v.string(),
+	},
+	handler: async (ctx, args) => {
+		const result = await ctx.db.patch(args._id, {
+			whiteboard: args.whiteboard,
 		});
 		return result;
 	},

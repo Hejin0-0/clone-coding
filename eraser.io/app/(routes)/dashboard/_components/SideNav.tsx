@@ -7,7 +7,7 @@ import SideNavBottomSection from "./SideNavBottomSection";
 import { useConvex, useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { toast } from "sonner";
-import { FileListContext } from "@/app/_components/_context/FilesListContext";
+import { FileListContext } from "@/app/_context/FilesListContext";
 
 function SideNav() {
 	const { user } = useKindeBrowserClient();

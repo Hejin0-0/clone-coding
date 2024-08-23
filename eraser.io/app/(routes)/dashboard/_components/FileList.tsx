@@ -1,4 +1,3 @@
-import { FileListContext } from "@/app/_components/_context/FilesListContext";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import { Archive, MoreHorizontal } from "lucide-react";
 import moment from "moment";
@@ -13,6 +12,7 @@ import {
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useRouter } from "next/navigation";
+import { FileListContext } from "@/app/_context/FilesListContext";
 
 export interface FILE {
 	archive: boolean;

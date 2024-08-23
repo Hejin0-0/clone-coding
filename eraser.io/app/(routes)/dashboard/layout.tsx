@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 // Starting from version 13 and above, `useRouter` should be imported from the `next/navigation` module instead of `next/router`.
 import React, { useEffect, useState } from "react";
 import SideNav from "./_components/SideNav";
-import { FileListContext } from "@/app/_components/_context/FilesListContext";
+import { FileListContext } from "@/app/_context/FilesListContext";
 
 function DashboardLayout({
 	children,
