@@ -1,11 +1,12 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import WorkspaceHeader from "./_components/WorkspaceHeader";
-import Editor from "./_components/Editor";
+import WorkspaceHeader from "../_components/WorkspaceHeader";
+import Editor from "../_components/Editor";
 import { useConvex } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { FILE } from "../../dashboard/_components/FileList";
+import Canvas from "../_components/Canvas";
 
 function Workspace({ params }: any) {
 	const [triggerSave, setTriggerSave] = useState(false);
@@ -43,7 +44,8 @@ function Workspace({ params }: any) {
 				</div>
 
 				{/* Whiteboard / Canvas */}
-				<div className="bg-red-400 h-screen">Canvas</div>
+				<div className="h-screen">Canvas</div>
+				<Canvas />
 			</div>
 		</div>
 	);
