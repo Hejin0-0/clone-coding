@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useMutation } from "convex/react";
 
-export const UseApiMutation = (mutationFunction: any) => {
+export const useApiMutation = (mutationFunction: any) => {
 	const [pending, setPending] = useState(false);
 	const apiMutation = useMutation(mutationFunction);
 
