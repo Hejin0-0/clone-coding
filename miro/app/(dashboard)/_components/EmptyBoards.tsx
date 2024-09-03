@@ -5,11 +5,13 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { api } from "@/convex/_generated/api";
 import { toast } from "sonner";
-import { UseApiMutation } from "@/hooks/useApiMutation";
+import { useApiMutation } from "@/hooks/useApiMutation";
+import { useRouter } from "next/router";
 
 export function EmptyBoards() {
+	const router = useRouter();
 	const { organization } = useOrganization();
-	const { mutate, pending } = UseApiMutation(api.board.create);
+	const { mutate, pending } = useApiMutation(api.board.create);
 	const onClick = () => {
 		if (!organization) return;
 		mutate({
@@ -18,6 +20,7 @@ export function EmptyBoards() {
 		})
 			.then((id) => {
 				toast.success("Board created");
+				router.push(`/board/${id}`);
 				// TODO: redirect to the board id
 			})
 			.catch(() => {
