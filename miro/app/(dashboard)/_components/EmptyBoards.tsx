@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { api } from "@/convex/_generated/api";
 import { toast } from "sonner";
 import { useApiMutation } from "@/hooks/useApiMutation";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export function EmptyBoards() {
 	const router = useRouter();
