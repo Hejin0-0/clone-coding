@@ -5,8 +5,7 @@ import { createClient } from "@liveblocks/client";
 import { createRoomContext } from "@liveblocks/react";
 
 const client = createClient({
-	publicApiKey:
-		"pk_dev_asnR9VR8uNWuSgnU1MsR7wy1c3vt25OtfNXDoGhAjDYh5DgYlWeow2Yra9o2U1V5",
+	authEndpoint: "/api/liveblocks-auth",
 });
 
 // Presence represents the properties that exist on every user in the Room
@@ -29,10 +28,13 @@ type Storage = {
 // Optionally, UserMeta represents static/readonly metadata on each user, as
 // provided by your own custom auth back end (if used). Useful for data that
 // will not change during a session, like a user's name or avatar.
-// type UserMeta = {
-//   id?: string,  // Accessible through `user.id`
-//   info?: Json,  // Accessible through `user.info`
-// };
+type UserMeta = {
+	id?: string; // Accessible through `user.id`
+	info?: {
+		name?: string;
+		picture?: string;
+	};
+};
 
 // Optionally, the type of custom events broadcast and listened to in this
 // room. Use a union for multiple events. Must be JSON-serializable.
