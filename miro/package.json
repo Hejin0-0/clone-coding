@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@clerk/clerk-react": "^5.4.2",
-    "@clerk/nextjs": "^5.3.3",
+    "@clerk/nextjs": "^4.6.18",
     "@clerk/shared": "^2.5.2",
     "@liveblocks/client": "^2.6.0",
     "@liveblocks/node": "^2.6.0",
@@ -27,6 +27,7 @@
     "convex-helpers": "^0.1.55",
     "date-fns": "^3.6.0",
     "lucide-react": "^0.436.0",
+    "nanoid": "^5.0.7",
     "next": "14.2.6",
     "next-themes": "^0.3.0",
     "query-string": "^9.1.0",
