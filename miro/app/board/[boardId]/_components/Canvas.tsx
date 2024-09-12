@@ -32,6 +32,7 @@ import { nanoid } from "nanoid";
 import { LiveObject } from "@liveblocks/client";
 import { LayerPreview } from "./LayerPreview";
 import { SelectionBox } from "./SelectionBox";
+import { SelectionTools } from "./SelectionTools";
 
 const MAX_LAYERS = 100;
 
@@ -289,6 +290,10 @@ export const Canvas = ({ boardId }: CanvasProps) => {
 				redo={history.redo}
 				canUndo={canUndo}
 				canRedo={canRedo}
+			/>
+			<SelectionTools
+				camera={camera}
+				setLastUsedColor={setLastUsedColor}
 			/>
 			<svg
 				className="h-[100vh] w[100vw]"
