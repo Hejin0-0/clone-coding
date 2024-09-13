@@ -1,6 +1,3 @@
-// Define Liveblocks types for your application
-// https://liveblocks.io/docs/api-reference/liveblocks-react#Typing-your-data
-
 import {
 	createClient,
 	LiveList,
@@ -8,11 +5,11 @@ import {
 	LiveObject,
 } from "@liveblocks/client";
 import { createRoomContext } from "@liveblocks/react";
-import { Layer, Color } from "@/types/canvas";
+import type { Layer, Color } from "@/types/canvas";
 
 const client = createClient({
-	throttle: 16,
 	authEndpoint: "/api/liveblocks-auth",
+	throttle: 16,
 });
 
 // Presence represents the properties that exist on every user in the Room
@@ -21,6 +18,8 @@ const client = createClient({
 type Presence = {
 	cursor: { x: number; y: number } | null;
 	selection: string[];
+	pencilDraft: [x: number, y: number, pressure: number][] | null;
+	pencilColor: Color | null;
 };
 
 // Optionally, Storage represents the shared document that persists in the
@@ -36,7 +35,7 @@ type Storage = {
 // provided by your own custom auth back end (if used). Useful for data that
 // will not change during a session, like a user's name or avatar.
 type UserMeta = {
-	id?: string; // Accessible through `user.id`
+	id?: string;
 	info?: {
 		name?: string;
 		picture?: string;
@@ -45,15 +44,18 @@ type UserMeta = {
 
 // Optionally, the type of custom events broadcast and listened to in this
 // room. Use a union for multiple events. Must be JSON-serializable.
-// type RoomEvent = {};
+type RoomEvent = {
+	// type: "NOTIFICATION",
+	// ...
+};
 
 // Optionally, when using Comments, ThreadMetadata represents metadata on
 // each thread. Can only contain booleans, strings, and numbers.
-// export type ThreadMetadata = {
-//   pinned: boolean;
-//   quote: string;
-//   time: number;
-// };
+export type ThreadMetadata = {
+	// resolved: boolean;
+	// quote: string;
+	// time: number;
+};
 
 export const {
 	RoomProvider,

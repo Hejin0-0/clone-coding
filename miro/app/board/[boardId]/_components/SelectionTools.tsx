@@ -89,9 +89,9 @@ export const SelectionTools = memo(
 				className="absolute p-3 rounded-xl bg-white shadow-sm border flex select-none"
 				style={{
 					transform: `translate(
-              calc(${x}px - 50%),
-              calc(${y - 16}px - 100%)
-            )`,
+			  calc(${x}px - 50%),
+			  calc(${y - 16}px - 100%)
+			)`,
 				}}
 			>
 				<ColorPicker onChange={handleColorChange} />
