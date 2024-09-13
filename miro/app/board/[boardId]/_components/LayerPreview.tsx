@@ -1,14 +1,14 @@
 "use client";
 
+import { useStorage } from "@/liveblocks.config";
 import { LayerType } from "@/types/canvas";
-import { useStorage } from "@liveblocks/react";
 import { memo } from "react";
+import { Ellipse } from "./Ellipse";
 import { Rectangle } from "./Rectangle";
-import { Ellipse } from "./ellipse";
-import { Text } from "./text";
+import { Text } from "./Text";
+import { Note } from "./Note";
+import { Path } from "./Path";
 import { colorToCss } from "@/lib/utils";
-import { Note } from "./note";
-import { Path } from "./path";
 
 interface LayerPreviewProps {
 	id: string;

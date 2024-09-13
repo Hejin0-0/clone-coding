@@ -1,15 +1,15 @@
 "use client";
 
-import { ClientSideSuspense } from "@liveblocks/react";
 import { RoomProvider } from "@/liveblocks.config";
-import { Children, ReactNode } from "react";
-import { LiveMap, LiveObject, LiveList } from "@liveblocks/client";
 import { Layer } from "@/types/canvas";
+import { LiveList, LiveMap, LiveObject } from "@liveblocks/client";
+import { ClientSideSuspense } from "@liveblocks/react";
+import React from "react";
 
 interface RoomProps {
-	children: ReactNode;
+	children: React.ReactNode;
 	roomId: string;
-	fallback: NonNullable<ReactNode> | null;
+	fallback: NonNullable<React.ReactNode> | null;
 }
 
 export const Room = ({ children, roomId, fallback }: RoomProps) => {
@@ -24,7 +24,7 @@ export const Room = ({ children, roomId, fallback }: RoomProps) => {
 			}}
 			initialStorage={{
 				layers: new LiveMap<string, LiveObject<Layer>>(),
-				layerIds: new LiveList(),
+				layerIds: new LiveList<string>([]), // 빈 배열로 초기화
 			}}
 		>
 			<ClientSideSuspense fallback={fallback}>

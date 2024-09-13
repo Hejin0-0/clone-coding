@@ -54,22 +54,29 @@ export const Note = ({
 				outline: selectionColor
 					? `1px solid ${selectionColor}`
 					: "none",
-				backgroundColor: fill ? colorToCss(fill) : "#000",
 			}}
 			className="shadow-md drop-shadow-xl"
 		>
-			<ContentEditable
-				html={value || "Text"}
-				onChange={handleContentChange}
-				className={cn(
-					"h-full w-full flex items-center justify-center outline-none",
-					font.className
-				)}
+			<div
 				style={{
-					color: fill ? getContrastingTextColor(fill) : "#000",
-					fontSize: calculateFontSize(width, height),
+					backgroundColor: fill ? colorToCss(fill) : "#000",
+					width: "100%",
+					height: "100%",
 				}}
-			/>
+			>
+				<ContentEditable
+					html={value || "Text"}
+					onChange={handleContentChange}
+					className={cn(
+						"h-full w-full flex items-center justify-center outline-none px-2",
+						font.className
+					)}
+					style={{
+						color: fill ? getContrastingTextColor(fill) : "#fff",
+						fontSize: calculateFontSize(width, height),
+					}}
+				/>
+			</div>
 		</foreignObject>
 	);
 };

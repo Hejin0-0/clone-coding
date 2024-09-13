@@ -58,78 +58,80 @@ export type ThreadMetadata = {
 };
 
 export const {
-	RoomProvider,
-	useRoom,
-	useMyPresence,
-	useUpdateMyPresence,
-	useSelf,
-	useOthers,
-	useOthersMapped,
-	useOthersConnectionIds,
-	useOther,
-	useBroadcastEvent,
-	useEventListener,
-	useErrorListener,
-	useStorage,
-	useObject,
-	useMap,
-	useList,
-	useBatch,
-	useHistory,
-	useUndo,
-	useRedo,
-	useCanUndo,
-	useCanRedo,
-	useMutation,
-	useStatus,
-	useLostConnectionListener,
-	useThreads,
-	useUser,
-	useCreateThread,
-	useEditThreadMetadata,
-	useCreateComment,
-	useEditComment,
-	useDeleteComment,
-	useAddReaction,
-	useRemoveReaction,
+	suspense: {
+		RoomProvider,
+		useRoom,
+		useMyPresence,
+		useUpdateMyPresence,
+		useSelf,
+		useOthers,
+		useOthersMapped,
+		useOthersConnectionIds,
+		useOther,
+		useBroadcastEvent,
+		useEventListener,
+		useErrorListener,
+		useStorage,
+		useObject,
+		useMap,
+		useList,
+		useBatch,
+		useHistory,
+		useUndo,
+		useRedo,
+		useCanUndo,
+		useCanRedo,
+		useMutation,
+		useStatus,
+		useLostConnectionListener,
+		useThreads,
+		useUser,
+		useCreateThread,
+		useEditThreadMetadata,
+		useCreateComment,
+		useEditComment,
+		useDeleteComment,
+		useAddReaction,
+		useRemoveReaction,
+	},
+} = createRoomContext<Presence, Storage, UserMeta, RoomEvent, ThreadMetadata>(
+	client,
+	{
+		async resolveUsers({ userIds }) {
+			// Used only for Comments. Return a list of user information retrieved
+			// from `userIds`. This info is used in comments, mentions etc.
 
-	// Other hooks
-	// ...
-} = createRoomContext<
-	Presence,
-	Storage
-	/* UserMeta, RoomEvent, ThreadMetadata */
->(client);
+			// const usersData = await __fetchUsersFromDB__(userIds);
+			//
+			// return usersData.map((userData) => ({
+			//   name: userData.name,
+			//   avatar: userData.avatar.src,
+			// }));
 
-// 2.0 Ver~   -------------------------------------------------------
+			return [];
+		},
+		async resolveMentionSuggestions({ text, roomId }) {
+			// Used only for Comments. Return a list of userIds that match `text`.
+			// These userIds are used to create a mention list when typing in the
+			// composer.
+			//
+			// For example when you type "@jo", `text` will be `"jo"`, and
+			// you should to return an array with John and Joanna's userIds:
+			// ["john@example.com", "joanna@example.com"]
 
-// declare global {
-// 	interface Liveblocks {
-// 	  // Each user's Presence, for useMyPresence, useOthers, etc.
-// 	  Presence: {};
+			// const userIds = await __fetchAllUserIdsFromDB__(roomId);
+			//
+			// Return all userIds if no `text`
+			// if (!text) {
+			//   return userIds;
+			// }
+			//
+			// Otherwise, filter userIds for the search `text` and return
+			// return userIds.filter((userId) =>
+			//   userId.toLowerCase().includes(text.toLowerCase())
+			// );
 
-// 	  // The Storage tree for the room, for useMutation, useStorage, etc.
-// 	  Storage: {};
-
-// 	  UserMeta: {
-// 		id: string;
-// 		// Custom user info set when authenticating with a secret key
-// 		info: {};
-// 	  };
-
-// 	  // Custom events, for useBroadcastEvent, useEventListener
-// 	  RoomEvent: {};
-
-// 	  // Custom metadata set on threads, for useThreads, useCreateThread, etc.
-// 	  ThreadMetadata: {};
-
-// 	  // Custom room info set with resolveRoomsInfo, for useRoomInfo
-// 	  RoomInfo: {};
-
-// 	  // Custom activities data for custom notification kinds
-// 	  ActivitiesData: {};
-// 	}
-//   }
-
-//   // Necessary if you have no imports/exports
-//   export {};
+			return [];
+		},
+	}
+);

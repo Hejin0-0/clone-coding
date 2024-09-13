@@ -1,25 +1,27 @@
 "use client";
 
-import { colorToCss } from "@/lib/utils";
-import { useOthersConnectionIds, useOthersMapped } from "@/liveblocks.config";
 import { shallow } from "@liveblocks/client";
 import { memo } from "react";
-import { Path } from "./path";
+
+import { colorToCss } from "@/lib/utils";
+import { useOthersConnectionIds, useOthersMapped } from "@/liveblocks.config";
+
 import { Cursor } from "./Cursor";
+import { Path } from "./Path";
 
 const Cursors = () => {
 	const ids = useOthersConnectionIds();
 
 	return (
 		<>
-			{ids.map((id) => (
-				<Cursor key={id} connectionId={id} />
+			{ids.map((connectionId) => (
+				<Cursor key={connectionId} connectionId={connectionId} />
 			))}
 		</>
 	);
 };
 
-const Draft = () => {
+const Drafts = () => {
 	const others = useOthersMapped(
 		(other) => ({
 			pencilDraft: other.presence.pencilDraft,
@@ -46,19 +48,20 @@ const Draft = () => {
 						/>
 					);
 				}
+
 				return null;
 			})}
 		</>
 	);
 };
 
-export const CursorPresence = memo(() => {
+export const CursorsPresence = memo(() => {
 	return (
 		<>
-			<Draft />
+			<Drafts />
 			<Cursors />
 		</>
 	);
 });
 
-CursorPresence.displayName = "CursorPresence";
+CursorsPresence.displayName = "CursorsPresence";

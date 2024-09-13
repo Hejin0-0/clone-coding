@@ -1,6 +1,14 @@
-import { withClerkMiddleware } from "@clerk/nextjs/server";
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
-export default withClerkMiddleware();
+const isProtectedRoute = createRouteMatcher(["/dashboard(.*)", "/forum(.*)"]);
+
+export default clerkMiddleware((auth, req) => {
+	if (!auth().userId && isProtectedRoute(req)) {
+		// Add custom logic to run before redirecting
+
+		return auth().redirectToSignIn();
+	}
+});
 
 export const config = {
 	matcher: [
@@ -10,16 +18,3 @@ export const config = {
 		"/(api|trpc)(.*)",
 	],
 };
-
-// import { withClerkMiddleware } from "@clerk/nextjs/server";
-
-// export default withClerkMiddleware({
-// 	publicRoutes: ["/contact", "/api(.)*"],
-// });
-
-// export const config = {
-// 	matcher: [
-// 		"/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
-// 		"/(api|trpc)(.*)",
-// 	],
-// };
